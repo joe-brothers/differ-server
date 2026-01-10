@@ -1,3 +1,5 @@
+package com.joebrothers.differ.server.plugins
+
 import io.ktor.serialization.kotlinx.KotlinxWebsocketSerializationConverter
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
