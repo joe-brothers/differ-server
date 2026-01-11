@@ -44,8 +44,10 @@ dependencies {
     implementation(libs.ktor.server.config.yaml)
     implementation(libs.argon2.jvm)
 
-    implementation(libs.konvert.api)
     ksp(libs.konvert)
+    implementation(libs.konvert.api)
+    implementation(libs.konvert.koin.annotations)
+    implementation(libs.konvert.koin.injector)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

@@ -1,5 +1,6 @@
 package com.joebrothers.differ.server.domain.user
 
+import com.joebrothers.differ.server.interfaces.user.UserDto
 import com.joebrothers.differ.server.utils.HashingService
 import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 import java.util.UUID
@@ -22,6 +23,13 @@ class UserService(
                 password = hash,
                 email = email,
             )
+        }
+    }
+
+    suspend fun findByUsername(username: String): UserDto? {
+        return suspendTransaction {
+            userRepository.selectByUsername(username)
+                ?.toUserDto()
         }
     }
 }

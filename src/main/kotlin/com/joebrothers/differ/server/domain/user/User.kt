@@ -3,10 +3,8 @@ package com.joebrothers.differ.server.domain.user
 import com.joebrothers.differ.server.interfaces.user.UserDto
 import io.mcarle.konvert.api.KonvertTo
 import io.mcarle.konvert.api.Mapping
-import org.jetbrains.exposed.v1.core.dao.id.EntityID
+import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.dao.id.UUIDTable
-import org.jetbrains.exposed.v1.dao.UUIDEntity
-import org.jetbrains.exposed.v1.dao.UUIDEntityClass
 import java.util.UUID
 
 object UsersTable : UUIDTable("users") {
@@ -21,14 +19,21 @@ object UsersTable : UUIDTable("users") {
 @KonvertTo(
     UserDto::class,
     mappings = [
-        Mapping(source = "id", target = "id", ),
         Mapping(source = "name", target = "username"),
     ],
 )
-class UserEntity(id: EntityID<UUID>) : UUIDEntity(id) {
-    companion object : UUIDEntityClass<UserEntity>(UsersTable)
-
-    var name by UsersTable.name
-    var password by UsersTable.password
-    var email by UsersTable.email
+data class UserEntity(
+    val id: UUID,
+    val name: String,
+    val password: String,
+    val email: String?,
+) {
+    companion object {
+        fun fromRow(row: ResultRow) = UserEntity(
+            id = row[UsersTable.id].value,
+            name = row[UsersTable.name],
+            password = row[UsersTable.password],
+            email = row[UsersTable.email],
+        )
+    }
 }

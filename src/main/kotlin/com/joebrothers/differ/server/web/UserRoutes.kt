@@ -40,5 +40,13 @@ fun Route.userRoutes(userService: UserService) {
         typedPost<Int, Int>("/users/authenticate") {
             TODO()
         }
+
+        get("/users/me") {
+            // TODO: auth
+
+            val user = userService.findByUsername("abc")
+                ?: throw IllegalArgumentException("User not found")
+            call.respond(HttpStatusCode.OK, user)
+        }
     }
 }

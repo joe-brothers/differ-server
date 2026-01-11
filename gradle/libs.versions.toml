@@ -42,6 +42,8 @@ logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "lo
 argon2-jvm = { module = "de.mkammerer:argon2-jvm", version.ref = "argon2-jvm" }
 konvert = { module = "io.mcarle:konvert", version.ref = "konvert" }
 konvert-api = { module = "io.mcarle:konvert-api", version.ref = "konvert" }
+konvert-koin-annotations = { module = "io.mcarle:konvert-koin-annotations", version.ref = "konvert" }
+konvert-koin-injector = { module = "io.mcarle:konvert-koin-injector", version.ref = "konvert" }
 
 # test
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
