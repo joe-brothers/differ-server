@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.plugin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 group = "com.joebrothers"
@@ -17,6 +18,9 @@ application {
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(25))
+    }
+    compilerOptions {
+        optIn.add("kotlin.uuid.ExperimentalUuidApi")
     }
 }
 
@@ -35,6 +39,9 @@ dependencies {
     implementation(libs.logback.classic)
     implementation(libs.ktor.server.config.yaml)
     implementation(libs.argon2.jvm)
+
+    implementation(libs.konvert.api)
+    ksp(libs.konvert)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

@@ -1,5 +1,8 @@
 package com.joebrothers.differ.server.domain.user
 
+import com.joebrothers.differ.server.interfaces.user.UserDto
+import io.mcarle.konvert.api.KonvertTo
+import io.mcarle.konvert.api.Mapping
 import org.jetbrains.exposed.v1.core.dao.id.EntityID
 import org.jetbrains.exposed.v1.core.dao.id.UUIDTable
 import org.jetbrains.exposed.v1.dao.UUIDEntity
@@ -12,6 +15,13 @@ object UsersTable : UUIDTable("users") {
     val email = varchar("email", length = 254).nullable()
 }
 
+@KonvertTo(
+    UserDto::class,
+    mappings = [
+        Mapping(source = "id", target = "id", ),
+        Mapping(source = "name", target = "username"),
+    ],
+)
 class UserEntity(id: EntityID<UUID>) : UUIDEntity(id) {
     companion object : UUIDEntityClass<UserEntity>(UsersTable)
 

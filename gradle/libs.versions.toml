@@ -8,6 +8,8 @@ postgres = "42.7.8"
 argon2-jvm = "2.12"
 koin-bom = "4.1.1"
 r2dbc-postgresql = "1.1.1.RELEASE"
+konvert = "4.4.0"
+ksp = "2.3.4"
 
 [libraries]
 # ktor
@@ -36,6 +38,8 @@ koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j" }
 # other
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 argon2-jvm = { module = "de.mkammerer:argon2-jvm", version.ref = "argon2-jvm" }
+konvert = { module = "io.mcarle:konvert", version.ref = "konvert" }
+konvert-api = { module = "io.mcarle:konvert-api", version.ref = "konvert" }
 
 # test
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -44,3 +48,4 @@ kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
