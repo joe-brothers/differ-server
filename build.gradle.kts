@@ -29,6 +29,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.compression)
+    implementation(libs.ktor.server.rate.limit)
     implementation(libs.postgresql)
     implementation(libs.r2dbc.postgresql) {
         exclude(group = "io.netty", module = "netty-codec")
