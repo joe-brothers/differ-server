@@ -4,7 +4,7 @@ ktor:
             - com.joebrothers.differ.server.ApplicationKt.module
     deployment:
         port: 8080
-postgres:
-  url: "jdbc:postgresql://localhost/default"
+database:
+  url: "r2dbc:postgresql://localhost:5432/differ"
   user: username
   password: password

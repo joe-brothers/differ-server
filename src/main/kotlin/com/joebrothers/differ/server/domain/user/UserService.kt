@@ -1,7 +1,7 @@
 package com.joebrothers.differ.server.domain.user
 
 import com.joebrothers.differ.server.utils.HashingService
-import org.jetbrains.exposed.v1.jdbc.transactions.suspendTransaction
+import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
 
 interface UserService {
     suspend fun existsByUsername(username: String): Boolean
@@ -14,7 +14,6 @@ class UserServiceImpl(
 ) : UserService {
 
     override suspend fun existsByUsername(username: String): Boolean {
-        // TODO - r2dbc
         return suspendTransaction {
             userRepository.existsByUsername(username)
         }
