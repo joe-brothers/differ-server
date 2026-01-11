@@ -3,7 +3,6 @@ package com.joebrothers.differ.server.di
 import com.joebrothers.differ.server.domain.user.UserRepository
 import com.joebrothers.differ.server.domain.user.UserRepositoryImpl
 import com.joebrothers.differ.server.domain.user.UserService
-import com.joebrothers.differ.server.domain.user.UserServiceImpl
 import com.joebrothers.differ.server.utils.Argon2HashingService
 import com.joebrothers.differ.server.utils.HashingService
 import org.koin.core.module.dsl.singleOf
@@ -19,7 +18,7 @@ private val utilModule = module {
 }
 
 private val serviceModule = module {
-    singleOf(::UserServiceImpl) bind UserService::class
+    singleOf(::UserService)
 }
 
 val allModules = listOf(repositoryModule, utilModule, serviceModule)
