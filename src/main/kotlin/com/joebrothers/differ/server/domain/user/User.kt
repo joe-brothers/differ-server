@@ -11,8 +11,11 @@ import java.util.UUID
 
 object UsersTable : UUIDTable("users") {
     val name = varchar("name", length = 50)
+        .uniqueIndex()
+        .index(customIndexName = "ix_users_name")
     val password = varchar("password", length = 128)
     val email = varchar("email", length = 254).nullable()
+        .uniqueIndex()
 }
 
 @KonvertTo(
