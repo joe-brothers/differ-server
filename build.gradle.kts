@@ -30,7 +30,9 @@ dependencies {
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.compression)
     implementation(libs.postgresql)
-    implementation(libs.r2dbc.postgresql)
+    implementation(libs.r2dbc.postgresql) {
+        exclude(group = "io.netty", module = "netty-codec")
+    }
     implementation(libs.h2)
     implementation(libs.exposed.core)
     implementation(libs.exposed.dao)
