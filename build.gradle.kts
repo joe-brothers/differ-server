@@ -28,6 +28,7 @@ dependencies {
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.server.compression)
     implementation(libs.postgresql)
     implementation(libs.r2dbc.postgresql)
     implementation(libs.h2)
