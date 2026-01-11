@@ -21,10 +21,11 @@ class UserServiceImpl(
     }
 
     override suspend fun signUp(username: String, password: String, email: String?): UUID {
+        val hash = hashingService.hash(password)
         return suspendTransaction {
             userRepository.create(
                 username = username,
-                password = hashingService.hash(password),
+                password = hash,
                 email = email,
             )
         }

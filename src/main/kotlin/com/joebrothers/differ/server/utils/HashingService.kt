@@ -1,10 +1,12 @@
 package com.joebrothers.differ.server.utils
 
 import de.mkammerer.argon2.Argon2Factory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 interface HashingService {
-    fun hash(password: String): String
-    fun verify(password: String, hash: String): Boolean
+    suspend fun hash(password: String): String
+    suspend fun verify(password: String, hash: String): Boolean
 }
 
 class Argon2HashingService : HashingService {
@@ -17,9 +19,11 @@ class Argon2HashingService : HashingService {
         private const val PARALLELISM = 1
     }
 
-    override fun hash(password: String): String =
-        argon2.hash(ITERATION, MEMORY, PARALLELISM, password.toCharArray())
+    override suspend fun hash(password: String): String = withContext(Dispatchers.Default) {
+        return@withContext argon2.hash(ITERATION, MEMORY, PARALLELISM, password.toCharArray())
+    }
 
-    override fun verify(password: String, hash: String): Boolean =
-        argon2.verify(hash, password.toCharArray())
+    override suspend fun verify(password: String, hash: String): Boolean = withContext(Dispatchers.Default) {
+        return@withContext argon2.verify(hash, password.toCharArray())
+    }
 }
