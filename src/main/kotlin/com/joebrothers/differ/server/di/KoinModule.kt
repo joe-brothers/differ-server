@@ -1,5 +1,6 @@
 package com.joebrothers.differ.server.di
 
+import com.joebrothers.differ.server.domain.auth.AuthService
 import com.joebrothers.differ.server.domain.user.UserRepository
 import com.joebrothers.differ.server.domain.user.UserRepositoryImpl
 import com.joebrothers.differ.server.domain.user.UserService
@@ -19,6 +20,7 @@ private val utilModule = module {
 
 private val serviceModule = module {
     singleOf(::UserService)
+    singleOf(::AuthService)
 }
 
-val allModules = listOf(repositoryModule, utilModule, serviceModule)
+val appModules = listOf(repositoryModule, utilModule, serviceModule)

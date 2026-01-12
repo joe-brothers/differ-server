@@ -1,17 +1,29 @@
 package com.joebrothers.differ.server.web
 
+import com.joebrothers.differ.server.domain.auth.AuthService
 import com.joebrothers.differ.server.domain.user.UserService
+import com.joebrothers.differ.server.interfaces.user.SignIn
 import com.joebrothers.differ.server.interfaces.user.Signup
 import com.joebrothers.differ.server.utils.typedPost
 import io.ktor.http.HttpStatusCode
+import io.ktor.server.auth.authenticate
+import io.ktor.server.auth.jwt.JWTPrincipal
+import io.ktor.server.auth.principal
 import io.ktor.server.plugins.ratelimit.RateLimitName
 import io.ktor.server.plugins.ratelimit.rateLimit
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.get
 import io.ktor.server.routing.route
+import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
+import org.koin.ktor.ext.inject
+import java.time.Instant
+import java.util.Date
 
-fun Route.userRoutes(userService: UserService) {
+fun Route.userRoutes() {
+    val authService: AuthService by inject()
+    val userService: UserService by inject()
+
     route("/api") {
         get {
             call.respond("hi")
@@ -37,16 +49,27 @@ fun Route.userRoutes(userService: UserService) {
             }
         }
 
-        typedPost<Int, Int>("/users/authenticate") {
-            TODO()
+        typedPost<SignIn.Request, SignIn.Response>("/users/authenticate") { request ->
+            val token = authService.signIn(request.username, request.password)
+                ?: throw IllegalArgumentException("Failed to sign in")
+
+            SignIn.Response(token)
         }
 
-        get("/users/me") {
-            // TODO: auth
+        authenticate("auth-jwt") {
+            get("/users/me") {
+                val principal = call.principal<JWTPrincipal>()
+                    ?: throw IllegalArgumentException("No JWT Principal")
+                val expiresAt = principal.expiresAt
+                    ?: throw IllegalArgumentException("Expiration time not found")
+                require(expiresAt <= Date.from(Instant.now()))
 
-            val user = userService.findByUsername("abc")
-                ?: throw IllegalArgumentException("User not found")
-            call.respond(HttpStatusCode.OK, user)
+                val username = principal.payload.getClaim("user.id").asString()
+
+                val user = suspendTransaction { userService.findByUsername(username) }
+                    ?: throw IllegalArgumentException("User not found")
+                call.respond(HttpStatusCode.OK, user)
+            }
         }
     }
 }

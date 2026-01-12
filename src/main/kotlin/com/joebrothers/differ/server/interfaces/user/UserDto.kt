@@ -30,3 +30,18 @@ class Signup {
         val id: UUID,
     )
 }
+
+@Serializable
+class SignIn {
+
+    @Serializable
+    data class Request(
+        val username: String,
+        val password: String,
+    )
+
+    @Serializable
+    data class Response(
+        val token: String,
+    )
+}

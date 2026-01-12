@@ -8,3 +8,5 @@ database:
   url: "r2dbc:postgresql://localhost:5432/differ"
   user: username
   password: password
+jwt:
+  secret: test

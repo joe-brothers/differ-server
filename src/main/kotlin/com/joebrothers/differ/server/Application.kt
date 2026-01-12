@@ -1,5 +1,6 @@
 package com.joebrothers.differ.server
 
+import com.joebrothers.differ.server.plugins.configureAuth
 import com.joebrothers.differ.server.plugins.configureCompression
 import com.joebrothers.differ.server.plugins.configureContentNegotiation
 import com.joebrothers.differ.server.plugins.configureDatabase
@@ -15,10 +16,12 @@ fun main(args: Array<String>) {
 }
 
 suspend fun Application.module() {
+    configureKoin()
+
+    configureAuth()
     configureCompression()
     configureContentNegotiation()
     configureDatabase()
-    configureKoin()
     configureRateLimit()
     configureRouting()
     configureSockets()
