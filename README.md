@@ -1,7 +1,10 @@
 # differ
 
-"Find the difference" game server
+"Find the difference" game server (WIP)
+- web client: 
 
-## TODO
+## Specification
 
-- [ ] Use `verify` to test koin injection (https://insert-koin.io/docs/reference/koin-test/verify)
+- Ktor 3.3.3
+- Exposed 1.0.0-rc-4
+- more in [version catalog](./gradle/libs.versions.toml)
