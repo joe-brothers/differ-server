@@ -1,7 +1,7 @@
 # differ
 
 "Find the difference" game server (WIP)
-- web client: 
+- web client: https://github.com/joe-brothers/differ-client
 
 ## Specification
 
