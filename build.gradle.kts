@@ -1,9 +1,12 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     // alias(libs.plugins.detekt)
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.plugin.serialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.ktor)
+    alias(libs.plugins.ktlint.plugin)
 }
 
 group = "com.joebrothers"
@@ -70,3 +73,13 @@ tasks.test {
 //     config.setFrom(file("detekt.yml"))
 //     buildUponDefaultConfig = true
 // }
+
+ktlint {
+    reporters {
+        reporter(ReporterType.HTML)
+    }
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}

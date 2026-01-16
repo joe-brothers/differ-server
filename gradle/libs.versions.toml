@@ -8,6 +8,7 @@ koin-bom = "4.1.1"
 kotlin = "2.3.0"
 ksp = "2.3.4"
 ktor = "3.3.3"
+ktlint-plugin = "14.0.1"
 logback = "1.4.14"
 postgres = "42.7.8"
 r2dbc-postgresql = "1.1.1.RELEASE"
@@ -57,4 +58,5 @@ detekt = { id = "dev.detekt", version.ref = "detekt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+ktlint-plugin = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
