@@ -1,4 +1,5 @@
 [versions]
+detekt = "2.0.0-alpha.1"  # TODO: https://github.com/detekt/detekt/issues/8745
 exposed = "1.0.0-rc-4"
 h2 = "2.3.232"
 kotlin = "2.3.0"
@@ -51,6 +52,7 @@ konvert-koin-injector = { module = "io.mcarle:konvert-koin-injector", version.re
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 [plugins]
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
