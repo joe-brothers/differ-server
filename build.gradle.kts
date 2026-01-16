@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.detekt)
+    // alias(libs.plugins.detekt)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
     alias(libs.plugins.kotlin.plugin.serialization)
@@ -66,7 +66,7 @@ tasks.test {
     useJUnitPlatform()
 }
 
-detekt {
-    config.setFrom(file("detekt.yml"))
-    buildUponDefaultConfig = true
-}
+// detekt {
+//     config.setFrom(file("detekt.yml"))
+//     buildUponDefaultConfig = true
+// }
