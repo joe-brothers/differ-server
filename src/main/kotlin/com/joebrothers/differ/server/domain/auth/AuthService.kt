@@ -24,8 +24,9 @@ class AuthService(
     suspend fun signIn(username: String, password: String): String? {
         val user = suspendTransaction { userRepository.selectByUsername(username) }
             ?: return null
-        if (!hashingService.verify(password, user.password))
+        if (!hashingService.verify(password, user.password)) {
             return null
+        }
 
         return JWT.create()
             .withClaim("user.id", user.id.toString())

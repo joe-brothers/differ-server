@@ -16,7 +16,7 @@ fun Application.configureAuth() {
         jwt("auth-jwt") {
             verifier(
                 JWT.require(Algorithm.HMAC256(config.secret))
-                    .build()
+                    .build(),
             )
         }
     }

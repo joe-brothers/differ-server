@@ -75,11 +75,14 @@ tasks.test {
 // }
 
 ktlint {
+    version = "1.8.0"
+
     reporters {
         reporter(ReporterType.HTML)
     }
     filter {
-        exclude("**/generated/**")
+        // (See https://github.com/JLLeitschuh/ktlint-gradle/issues/746)
+        // exclude("**/generated/**")
         include("**/kotlin/**")
     }
 }

@@ -26,7 +26,7 @@ suspend fun Application.configureDatabase() {
                 option(ConnectionFactoryOptions.USER, dbUser)
                 option(ConnectionFactoryOptions.PASSWORD, dbPassword)
             }
-        }
+        },
     )
 
     // TODO

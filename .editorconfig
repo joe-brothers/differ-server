@@ -6,4 +6,9 @@ indent_style = space
 trim_trailing_whitespace = true
 
 [*.{kt,kts}]
+ktlint_code_style = intellij_idea
 ktlint_standard_multiline-expression-wrapping = disabled
+
+# https://github.com/JLLeitschuh/ktlint-gradle/issues/746
+[build/generated/*/main/**]
+ktlint = disabled

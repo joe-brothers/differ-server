@@ -8,7 +8,7 @@ import io.ktor.server.routing.post
 
 inline fun <reified Request : Any, reified Response : Any> Route.typedPost(
     path: String,
-    crossinline handler: suspend (Request) -> Response
+    crossinline handler: suspend (Request) -> Response,
 ) {
     post(path) {
         try {

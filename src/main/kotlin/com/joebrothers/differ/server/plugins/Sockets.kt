@@ -20,13 +20,14 @@ fun Application.configureSockets() {
         pingPeriod = 15.seconds
         timeout = 15.seconds
         maxFrameSize = Long.MAX_VALUE
-        masking = false  // TODO: set to true
+        masking = false // TODO: set to true
         contentConverter = KotlinxWebsocketSerializationConverter(Json)
 
         // TODO: deflate extension
     }
     routing {
-        webSocket("/ws") { // websocketSession
+        webSocket("/ws") {
+            // websocketSession
             for (frame in incoming) {
                 if (frame is Frame.Text) {
                     val text = frame.readText()

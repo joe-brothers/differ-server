@@ -9,10 +9,8 @@ class UserService(
     private val userRepository: UserRepository,
     private val hashingService: HashingService,
 ) {
-    suspend fun existsByUsername(username: String): Boolean {
-        return suspendTransaction {
-            userRepository.existsByUsername(username)
-        }
+    suspend fun existsByUsername(username: String): Boolean = suspendTransaction {
+        userRepository.existsByUsername(username)
     }
 
     suspend fun signUp(username: String, password: String, email: String?): UUID {
@@ -26,10 +24,8 @@ class UserService(
         }
     }
 
-    suspend fun findByUsername(username: String): UserDto? {
-        return suspendTransaction {
-            userRepository.selectByUsername(username)
-                ?.toUserDto()
-        }
+    suspend fun findByUsername(username: String): UserDto? = suspendTransaction {
+        userRepository.selectByUsername(username)
+            ?.toUserDto()
     }
 }

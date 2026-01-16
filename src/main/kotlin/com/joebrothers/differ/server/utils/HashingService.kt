@@ -14,6 +14,7 @@ class Argon2HashingService : HashingService {
 
     companion object {
         private const val ITERATION = 10
+
         /** in kilobytes */
         private const val MEMORY = 65536
         private const val PARALLELISM = 1
